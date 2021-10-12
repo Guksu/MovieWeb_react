@@ -5,6 +5,7 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
+import Detail from "Routes/Detail";
 import Home from "Routes/Home";
 import Search from "Routes/Search";
 import Tv from "Routes/Tv";
@@ -19,6 +20,8 @@ export default () => (
       <Route path="/" exact component={Home}></Route>
       <Route path="/tv" exact component={Tv}></Route>
       <Route path="/search" component={Search}></Route>
+      <Route path="/movie/:id" component={Detail}></Route>
+      <Route path="/show/:id" component={Detail}></Route>
       <Redirect from="*" to="/"></Redirect>
     </Switch>
   </Router>

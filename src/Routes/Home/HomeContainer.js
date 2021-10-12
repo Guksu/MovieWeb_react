@@ -5,6 +5,7 @@
 // 프리젠터는 state(상태값), api, 클래스 등을 다루지 않는다.
 // (데이터를 화면에 뿌려주고 스타일을 담당함)
 
+import { moviesApi } from "api";
 import React from "react";
 import HomePresenterr from "./HomePresenter";
 
@@ -17,9 +18,38 @@ export default class extends React.Component {
     loading: true,
   };
 
+  async componentDidMount() {
+    try {
+      const {
+        data: { result: nowPlaying },
+      } = await moviesApi.nowPlaying();
+
+      const {
+        data: { result: upcoming },
+      } = await moviesApi.upcoming();
+
+      const {
+        data: { result: popular },
+      } = await moviesApi.popular();
+
+      this.setState({
+        nowPlaying,
+        upcoming,
+        popular,
+      });
+    } catch {
+      this.setState({
+        error: "Can't find movies Info",
+      });
+    } finally {
+      this.setState({
+        loading: false,
+      });
+    }
+  }
+
   render() {
     const { nowPlaying, upcoming, popular, error, loading } = this.state;
-
     return (
       <HomePresenterr
         nowPlaying={nowPlaying}
