@@ -1,6 +1,6 @@
-import { moviesApi, tvApi } from "api";
 import React from "react";
 import DetailPresenter from "./DetailPresenter";
+import { moviesApi, tvApi } from "../../api";
 
 export default class extends React.Component {
   constructor(props) {
@@ -25,7 +25,6 @@ export default class extends React.Component {
     } = this.props;
     const { isMovie } = this.state;
     const parsedId = parseInt(id);
-
     if (isNaN(parsedId)) {
       return push("/");
     }
@@ -38,7 +37,7 @@ export default class extends React.Component {
         ({ data: result } = await tvApi.showDetail(parsedId));
       }
     } catch {
-      this.setState({ error: "Can't find anything" });
+      this.setState({ error: "Can't find anything." });
     } finally {
       this.setState({ loading: false, result });
     }
