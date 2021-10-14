@@ -5,10 +5,10 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-import Detail from "Routes/Detail";
-import Home from "Routes/Home";
-import Search from "Routes/Search";
-import Tv from "Routes/Tv";
+import Detail from "Routes/Detail/index";
+import Home from "Routes/Home/index";
+import Search from "Routes/Search/index";
+import Tv from "Routes/Tv/index";
 import Header from "./Header";
 
 //일치되는 라우터가 없는 경우 redirect로 이동
